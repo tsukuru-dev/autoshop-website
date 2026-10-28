@@ -47,7 +47,12 @@ import { services, site } from '../data/site';
       <p class="eyebrow">03 / GET IN TOUCH</p>
       <div class="contact-heading"><h2>Let’s talk cars.</h2><a class="button small contact-call" href={site.phoneHref}>Call {site.phone}</a></div>
       <address class="contact-address">134 Tolworth Broadway<br />Surbiton, Surrey<br />KT6 7HT</address>
-      <div class="garage-map"><iframe title="Google map showing 134 Tolworth Broadway, Surbiton" src={`https://www.google.com/maps?q=${encodeURIComponent(site.address)}&output=embed`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+      <a class="garage-map" data-map-link href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(site.address)}`} target="_blank" rel="noopener noreferrer" aria-label="Get directions to FJD Autos">
+        <img src="/images/fjd-location-map.png" alt="Map showing FJD Autos beside Tolworth Broadway and the A3" width="1280" height="600" loading="lazy" />
+        <span class="map-site-pin" aria-hidden="true"><span></span></span>
+        <span class="map-location-name">FJD Autos</span>
+        <span class="map-action">Get directions <span aria-hidden="true">↗</span></span>
+      </a>
     </div>
     <div class="contact-opening"><h3>Opening hours</h3><dl class="opening-hours">{site.openingHours.map(item => <div class:list={{ 'day-closed': item.hours === 'Closed' }}><dt>{item.days}</dt><dd>{item.hours}</dd></div>)}</dl></div>
   </section>
@@ -59,3 +64,13 @@ import { services, site } from '../data/site';
     <a class="booking-orbit" href="/enquiry/" aria-label="Book your visit"><span class="booking-circle" aria-hidden="true"><svg viewBox="0 0 180 180" fill="none"><defs><path id="booking-text-curve" d="M 20,90 A 70,70 0 0,0 160,90" /></defs><text class="booking-curved-label" text-anchor="middle"><textPath href="#booking-text-curve" startOffset="50%">BOOK YOUR VISIT</textPath></text><path class="booking-arrow" d="M45 90h78M100 67l23 23-23 23" /></svg></span></a>
   </section>
 </Layout>
+<script>
+  const mapLink = document.querySelector<HTMLAnchorElement>('[data-map-link]');
+  if (mapLink) {
+    const address = '134 Tolworth Broadway, Surbiton, Surrey, KT6 7HT';
+    if (/Android/i.test(navigator.userAgent)) {
+      mapLink.href = `geo:51.37928,-0.28130?q=${encodeURIComponent(address)}`;
+      mapLink.removeAttribute('target');
+    }
+  }
+</script>
