@@ -51,3 +51,21 @@
   margin-bottom: 28px;
 }
 .cta .eyebrow { color: var(--lime); }
+
+.hero,
+.page-intro,
+.enquiry-layout {
+  padding-top: 24px;
+}
+
+@media (max-width: 650px) {
+  .hero,
+  .page-intro,
+  .enquiry-layout {
+    padding-top: 16px;
+  }
+}
+
+.enquiry-intro .eyebrow {
+  margin-bottom: 12px;
+}
