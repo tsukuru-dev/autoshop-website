@@ -1,4 +1,6 @@
 .about-section,.contact-section{display:grid;grid-template-columns:1fr 1fr;gap:75px;padding-top:65px;padding-bottom:65px;border-bottom:1px solid #d9ddcf}
+.hero .quiet{font-size:.95rem;color:var(--green)}
+.hero .quiet a{font-weight:600;text-underline-offset:4px}
 .about-section p,.contact-section p{max-width:490px}
 .about-section .lead{margin-bottom:16px}
 .contact-section{margin-bottom:65px;border-top:1px solid #d9ddcf}

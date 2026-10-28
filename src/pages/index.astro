@@ -3,12 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import { services, site } from '../data/site';
 ---
 
-<Layout title="Servicing, MOTs, repairs & tyres in Surbiton" description="FJD Autos is a family-run garage in Surbiton offering servicing, MOTs, repairs, tyres and diagnostics for all makes and models. Call 020 8390 2542.">
+<Layout title="Servicing, MOT, repairs & tyres in Surbiton" description="FJD Autos is a family-run garage in Surbiton offering servicing, MOT, repairs, tyres and diagnostics for all makes and models. Call 020 8390 2542.">
   <section class="hero wrap">
     <div class="hero-copy">
       <p class="eyebrow"><span class="status-dot"></span> YOUR FAMILY-RUN GARAGE IN SURBITON</p>
       <h1>Good care.<br />More miles<span class="accent">.</span></h1>
-      <p class="lead">Servicing, MOTs, repairs and tyres for all makes and models. From the everyday service to the unexpected repair, your car is in experienced hands.</p>
+      <p class="lead">Servicing, MOT, repairs and tyres for all makes and models. From the everyday service to the unexpected repair, your car is in experienced hands.</p>
       <a class="button" href="/enquiry/">Let’s talk about your car <span aria-hidden="true">↗</span></a>
       <p class="quiet">Prefer a conversation? <a href={site.phoneHref}>Call {site.phone}</a>.</p>
     </div>
@@ -57,7 +57,7 @@ import { services, site } from '../data/site';
     <div class="contact-opening"><h3>Opening hours</h3><dl class="opening-hours">{site.openingHours.map(item => <div class:list={{ 'day-closed': item.hours === 'Closed' }}><dt>{item.days}</dt><dd>{item.hours}</dd></div>)}</dl></div>
   </section>
 
-  <section class="area-section wrap"><h2>Local drivers. Local fleets.</h2><p>Car repairs, tyres and MOTs for vehicle owners and fleets across {site.areasServed.join(', ')}.</p></section>
+  <section class="area-section wrap"><h2>Local drivers. Local fleets.</h2><p>Car repairs, tyres and MOT for vehicle owners and fleets across {site.areasServed.join(', ')}.</p></section>
 
   <section class="cta wrap">
     <div class="cta-copy"><p class="eyebrow">LET’S GET STARTED</p><h2>A little attention.<br />A lot more peace of mind.</h2></div>

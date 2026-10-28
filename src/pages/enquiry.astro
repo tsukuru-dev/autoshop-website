@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { services } from '../data/site';
 const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
-<Layout title="Request a booking or tyre quote" description="Contact FJD Autos in Surbiton for servicing, MOTs, repairs, diagnostics or a free tyre quote.">
+<Layout title="Request a booking or tyre quote" description="Contact FJD Autos in Surbiton for servicing, MOT, repairs, diagnostics or a free tyre quote.">
   <section class="enquiry-layout wrap"><div class="enquiry-intro"><p class="eyebrow">LET’S GET YOU MOVING</p><h1>Your car.<br />What’s next<span class="accent">?</span></h1><p class="lead">Tell us a little about what you need. We’ll get in touch to arrange the details.</p></div>
   <form id="enquiry-form" class="enquiry-form" action="/api/enquiry" method="post" novalidate>
     <h2>Request a booking</h2>

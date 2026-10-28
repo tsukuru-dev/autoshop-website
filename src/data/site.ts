@@ -21,7 +21,7 @@ export const site = {
 };
 
 export const services = [
-  { slug: 'mot', name: 'MOTs', short: 'Time for your next MOT? Let’s get it arranged.', description: 'FJD Autos offers MOT testing in Surbiton for all makes and models. Send your registration and preferred date, and we’ll contact you to confirm availability.' },
+  { slug: 'mot', name: 'MOT', short: 'Time for your next MOT? Let’s get it arranged.', description: 'FJD Autos offers MOT testing in Surbiton for all makes and models. Send your registration and preferred date, and we’ll contact you to confirm availability.' },
   { slug: 'tyres', name: 'Tyres', short: 'Find the right tyres for the road ahead.', description: 'Ask FJD Autos for a free, no-obligation tyre quote. Include your registration and tyre size if you know it, and tell us how many tyres you need.' },
   { slug: 'servicing', name: 'Servicing', short: 'Keep your next journey running smoothly.', description: 'Tell us about your vehicle, its mileage and when it was last serviced. We can discuss the work it needs and arrange a suitable time.' },
   { slug: 'repairs', name: 'Repairs', short: 'Get to the bottom of that knock, rattle or fault.', description: 'Describe the problem and when it happens. Include any recent repairs or changes to help us understand what needs attention.' },
