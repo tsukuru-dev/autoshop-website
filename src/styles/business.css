@@ -144,3 +144,4 @@
 .enquiry-form > h2 {
   font-size: 2rem;
 }
+.option-aside { color: var(--muted); font-size: .78rem; font-weight: 400; }
