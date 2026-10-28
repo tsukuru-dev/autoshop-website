@@ -10,8 +10,19 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <p class="form-intro">All fields are required unless marked optional.</p>
     <div class="form-grid"><label>Your name<input name="name" autocomplete="name" maxlength="100" required /></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" maxlength="30" required /></label></div>
     <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
-    <div class="form-grid"><label>Vehicle registration<input name="registration" class="registration" maxlength="15" required autocapitalize="characters" /></label><label>Preferred date (optional)<input name="date" type="date" /></label></div>
-    <p class="booking-notice">Your preferred date isn’t a confirmed appointment. We’ll confirm availability with you first.</p>
+    <label>Vehicle registration<input name="registration" class="registration" maxlength="15" required autocapitalize="characters" /></label>
+    <fieldset class="urgency-fieldset">
+      <legend>How soon do you need the work done?</legend>
+      <div class="urgency-options">
+        <label class="urgency-option"><input type="radio" name="urgency" value="As soon as possible" required /><span>As soon as possible</span></label>
+        <label class="urgency-option"><input type="radio" name="urgency" value="Within the next few days" /><span>Within the next few days</span></label>
+        <label class="urgency-option"><input type="radio" name="urgency" value="Within a week" /><span>Within a week</span></label>
+        <label class="urgency-option"><input type="radio" name="urgency" value="I’m flexible" /><span>I’m flexible</span></label>
+        <label class="urgency-option"><input type="radio" name="urgency" value="I have a specific date" /><span>I have a specific date</span></label>
+      </div>
+    </fieldset>
+    <label id="specific-date-field" hidden>Preferred date<input name="date" type="date" /></label>
+    <p id="specific-date-notice" class="booking-notice" hidden>Your preferred date isn’t a confirmed appointment. We’ll confirm availability with you first.</p>
     <fieldset class="service-fieldset">
       <legend>What can we help with?</legend>
       <p class="field-hint">Choose all that apply.</p>
@@ -52,6 +63,18 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     validateServices();
     const date = form.elements.namedItem('date') as HTMLInputElement;
     date.min = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(new Date());
+    const urgencyRadios = [...form.querySelectorAll<HTMLInputElement>('input[name="urgency"]')];
+    const specificDateField = document.querySelector<HTMLElement>('#specific-date-field')!;
+    const specificDateNotice = document.querySelector<HTMLElement>('#specific-date-notice')!;
+    const updateDateField = () => {
+      const needsDate = urgencyRadios.some(radio => radio.checked && radio.value === 'I have a specific date');
+      specificDateField.hidden = !needsDate;
+      specificDateNotice.hidden = !needsDate;
+      date.required = needsDate;
+      if (!needsDate) date.value = '';
+    };
+    urgencyRadios.forEach(radio => radio.addEventListener('change', updateDateField));
+    updateDateField();
     form.addEventListener('submit', async event => {
       event.preventDefault();
       validateServices();

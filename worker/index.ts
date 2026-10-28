@@ -58,7 +58,7 @@ export default {
       message.setRecipient(env.EMAIL_TO);
       message.setHeader('Reply-To', enquiry.email);
       message.setSubject(`Booking enquiry: ${enquiry.services.join(', ')} — ${enquiry.registration}`);
-      message.addMessage({ contentType: 'text/plain', data: `New website enquiry\n\nName: ${enquiry.name}\nPhone: ${enquiry.phone}\nEmail: ${enquiry.email}\nRegistration: ${enquiry.registration}\nServices: ${enquiry.services.join(', ')}\nPreferred date: ${enquiry.date || 'Flexible'}\n\n${enquiry.message}\n\nThis is a booking request, not a confirmed appointment.` });
+      message.addMessage({ contentType: 'text/plain', data: `New website enquiry\n\nName: ${enquiry.name}\nPhone: ${enquiry.phone}\nEmail: ${enquiry.email}\nRegistration: ${enquiry.registration}\nServices: ${enquiry.services.join(', ')}\nTiming: ${enquiry.urgency}\nPreferred date: ${enquiry.date || 'Not specified'}\n\n${enquiry.message}\n\nThis is a booking request, not a confirmed appointment.` });
       await env.ENQUIRY_EMAIL.send(new EmailMessage(env.EMAIL_FROM, env.EMAIL_TO, message.asRaw()));
       return json({ ok: true });
     } catch {
