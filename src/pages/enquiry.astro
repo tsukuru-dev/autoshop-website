@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { services } from '../data/site';
+const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+<Layout title="Request a booking" description="Tell FJD Autos about your vehicle and request a servicing, repair or diagnostics appointment.">
+  <section class="enquiry-layout wrap"><div class="enquiry-intro"><p class="eyebrow">LET’S GET YOU MOVING</p><h1>Your car.<br />What’s next<span class="accent">?</span></h1><p class="lead">Tell us a little about what you need. We’ll get in touch to arrange the details.</p><div class="note"><h3>A request, then a conversation.</h3><p>Your preferred date isn’t a confirmed appointment. We’ll confirm availability with you first.</p></div></div>
+  <form id="enquiry-form" class="enquiry-form" action="/api/enquiry" method="post">
+    <h2>Request a booking</h2><p class="form-intro">All fields are required unless marked optional.</p>
+    <div class="form-grid"><label>Your name<input name="name" autocomplete="name" maxlength="100" required /></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" maxlength="30" required /></label></div>
+    <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
+    <div class="form-grid"><label>Vehicle registration<input name="registration" class="registration" maxlength="15" required autocapitalize="characters" /></label><label>Preferred date (optional)<input name="date" type="date" /></label></div>
+    <label>What can we help with?<select name="service" required><option value="">Choose a service</option>{services.map(s => <option>{s.name}</option>)}<option>Something else</option></select></label>
+    <label>Tell us a little more<textarea name="message" rows="4" maxlength="3000" required placeholder="What’s happening with your car? Include the make, model and any helpful details."></textarea></label>
+    <div class="honeypot" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+    <p class="quiet">We’ll use these details to respond to your enquiry. Read our <a href="/privacy/">privacy notice</a>.</p>
+    {key ? <><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><div class="cf-turnstile" data-sitekey={key} data-action="enquiry" data-theme="light"></div></> : <p class="setup-notice">This form is being set up and isn’t accepting enquiries yet.</p>}
+    <button class="button" type="submit" disabled={!key}>Send enquiry <span aria-hidden="true">↗</span></button>
+    <p id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+    <noscript><p>Please enable JavaScript to complete the spam protection and send your enquiry.</p></noscript>
+  </form></section>
+</Layout>
+<script>
+  const form = document.querySelector<HTMLFormElement>('#enquiry-form');
+  if (form) {
+    const service = form.elements.namedItem('service') as HTMLSelectElement;
+    const selected = new URLSearchParams(location.search).get('service');
+    if (selected && [...service.options].some(option => option.value === selected)) service.value = selected;
+    const date = form.elements.namedItem('date') as HTMLInputElement;
+    date.min = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(new Date());
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const button = form.querySelector<HTMLButtonElement>('button')!;
+      const status = document.querySelector<HTMLElement>('#form-status')!;
+      button.disabled = true;
+      status.textContent = 'Sending your enquiry…';
+      try {
+        const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'We couldn’t send your enquiry. Please try again.');
+        form.reset();
+        status.textContent = 'Enquiry received. We’ll contact you to discuss the details and confirm availability.';
+      } catch (error) { status.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.'; }
+      finally {
+        button.disabled = false;
+        const turnstile = (window as Window & { turnstile?: { reset: () => void } }).turnstile;
+        turnstile?.reset();
+        status.focus();
+      }
+    });
+  }
+</script>

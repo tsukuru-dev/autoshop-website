@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {site.name}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#183b32" />
+    {!Astro.site && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={`${title} | ${site.name}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header wrap">
+      <a class="brand" href="/" aria-label={`${site.name} home`}><span class="brand-mark">FJD</span><span>AUTOS<span class="brand-caption">CARE FOR YOUR CAR</span></span></a>
+      <nav aria-label="Main navigation"><a href="/#services">Services</a><a href="/#how-it-works">How it works</a><a class="button small" href="/enquiry/">Make an enquiry <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="footer wrap"><div><a class="footer-brand" href="/">{site.name}<span class="accent">.</span></a><p>Let’s get you moving.</p></div><div><a href="/enquiry/">Request a booking ↗</a><a href="/privacy/">Privacy</a><small>© {new Date().getFullYear()} {site.name}</small></div></footer>
+  </body>
+</html>
