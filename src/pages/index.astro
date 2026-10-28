@@ -22,5 +22,23 @@ import { services, site } from '../data/site';
     <div class="contact-opening"><h3>Opening hours</h3><dl class="opening-hours">{site.openingHours.map(item => <div class:list={{ 'day-closed': item.hours === 'Closed' }}><dt>{item.days}</dt><dd>{item.hours}</dd></div>)}</dl></div>
   </section>
   <section class="area-section wrap"><h2>Local drivers. Local fleets.</h2><p>Car repairs, tyres and MOTs for vehicle owners and fleets across {site.areasServed.join(', ')}.</p></section>
-  <section class="cta wrap"><p class="eyebrow">LET’S GET STARTED</p><h2>A little attention.<br />A lot more peace of mind.</h2><a class="button light" href="/enquiry/">Request a booking <span aria-hidden="true">↗</span></a></section>
+  <section class="cta wrap">
+    <div class="cta-copy">
+      <p class="eyebrow">LET’S GET STARTED</p>
+      <h2>A little attention.<br />A lot more peace of mind.</h2>
+    </div>
+    <a class="booking-orbit" href="/enquiry/" aria-label="Book your visit">
+      <span class="booking-circle" aria-hidden="true">
+        <svg viewBox="0 0 180 180" fill="none">
+          <defs>
+            <path id="booking-text-curve" d="M 20,90 A 70,70 0 0,0 160,90" />
+          </defs>
+          <text class="booking-curved-label" text-anchor="middle">
+            <textPath href="#booking-text-curve" startOffset="50%">BOOK YOUR VISIT</textPath>
+          </text>
+          <path class="booking-arrow" d="M45 90h78M100 67l23 23-23 23" />
+        </svg>
+      </span>
+    </a>
+  </section>
 </Layout>

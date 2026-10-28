@@ -52,6 +52,40 @@
 }
 .cta .eyebrow { color: var(--lime); }
 
+.cta {
+  display: grid;
+  grid-template-columns: minmax(0, 650px) auto;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  margin-bottom: 0;
+  padding-block: 150px;
+  padding-inline: clamp(32px, 6vw, 80px);
+}
+.cta .eyebrow { margin-bottom: 20px; }
+.cta h2 { margin-bottom: 0; font-size: clamp(2.2rem, 3.7vw, 3.4rem); line-height: 1.15; text-wrap: balance; }
+.booking-orbit { justify-self: center; display: flex; align-items: center; text-decoration: none; border-radius: 50%; }
+.booking-circle { display: grid; place-items: center; width: clamp(140px, 15vw, 180px); aspect-ratio: 1; border-radius: 50%; background: var(--lime); color: var(--green); transition: background .25s ease; }
+.booking-circle svg { display: block; width: 100%; height: 100%; stroke: none; overflow: visible; }
+.booking-arrow { stroke: currentColor; stroke-width: 5; stroke-linecap: square; stroke-linejoin: miter; transition: transform .25s ease; }
+.booking-circle .booking-curved-label { fill: currentColor; stroke: none; stroke-width: 0; font-family: Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; }
+.booking-orbit:hover .booking-circle { background: #e7f7a5; }
+.booking-orbit:hover .booking-arrow, .booking-orbit:focus-visible .booking-arrow { transform: translate(5px, 0); }
+.booking-orbit:focus-visible { outline: 3px solid var(--lime); outline-offset: 10px; }
+@media (prefers-reduced-motion: reduce) { .booking-orbit:hover .booking-arrow, .booking-orbit:focus-visible .booking-arrow { transform: none; } }
+
+@media (max-width: 650px) {
+  .cta {
+    grid-template-columns: 1fr;
+    padding-block: 100px;
+    padding-inline: 28px;
+    gap: 36px;
+  }
+  .cta-copy { text-align: center; }
+  .booking-orbit { justify-self: center; }
+  .booking-circle { width: 140px; }
+}
+
 .hero,
 .page-intro,
 .enquiry-layout {
