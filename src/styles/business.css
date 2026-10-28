@@ -6,12 +6,13 @@
 .contact-heading h2{margin:0;font-size:clamp(1.35rem,2.1vw,2rem);white-space:nowrap}
 .contact-heading .contact-call{flex-shrink:0;white-space:nowrap;font-size:.75rem;padding:12px}
 @media(max-width:380px){.contact-heading{gap:8px}.contact-heading h2{font-size:1.2rem}.contact-heading .contact-call{font-size:.65rem;padding:10px 8px}}
-.opening-hours{margin:0 0 28px}
+.opening-hours{margin:0}
 .opening-hours>div{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid #d9ddcf}
+.opening-hours>div:last-child{border-bottom:0}
 .opening-hours dd{margin:0}
 .contact-address{font-style:normal;line-height:1.8;margin-bottom:22px;color:var(--muted)}
-.contact-opening{padding:30px;background:#eeefe5;border:1px solid #d9ddcf;border-radius:7px;align-self:start}
-.opening-hours .day-closed{color:var(--muted)}
+.contact-opening{padding:30px;background:#edf1e6;border:1px solid #cfd8c7;border-radius:7px;align-self:start;color:var(--green)}
+.opening-hours .day-closed{color:#82943f}
 .garage-map{position:relative;display:block;margin-top:26px;overflow:hidden;border:1px solid #cfd8c7;border-radius:6px;background:#eef2e7;text-decoration:none}.garage-map::after{content:"";position:absolute;inset:0;background:rgba(209,232,198,.16);mix-blend-mode:multiply;pointer-events:none}.garage-map img{display:block;width:100%;height:230px;object-fit:cover;filter:sepia(.08) hue-rotate(42deg) saturate(.72) contrast(.96)}.map-site-pin{position:absolute;z-index:2;left:50%;top:50%;width:30px;height:30px;border:8px solid var(--green);border-radius:50% 50% 50% 0;background:var(--lime);transform:translate(-50%,-80%) rotate(-45deg);filter:drop-shadow(0 3px 3px rgba(20,61,51,.24))}.map-site-pin span{position:absolute;inset:7px;border-radius:50%;background:var(--lime)}.map-location-name{position:absolute;z-index:1;left:50%;top:50%;transform:translate(18px,-44px);padding:8px 10px;border-radius:4px;background:var(--green);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;box-shadow:0 3px 8px rgba(20,61,51,.18)}.map-action{position:absolute;z-index:2;top:12px;left:12px;display:flex;gap:18px;align-items:center;padding:10px 13px;border-radius:4px;background:var(--green);color:#fff;font-size:.78rem;font-weight:600}.garage-map:hover .map-action{background:#285547}.garage-map:focus-visible{outline:3px solid #64892c;outline-offset:4px}
 @media(max-width:650px){.contact-opening{padding:24px;margin-top:15px}.garage-map img{height:220px}.map-location-name{font-size:.6rem;transform:translate(14px,-40px)}}
 .site-footer{padding-top:45px;padding-bottom:25px;border-top:1px solid #d9ddcf}
