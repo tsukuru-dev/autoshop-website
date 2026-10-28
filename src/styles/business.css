@@ -117,3 +117,4 @@
 .service-option:has(input:checked) { border-color: var(--green); background: #eef3dd; }
 .service-option input { width: 1rem; height: 1rem; margin: 0; flex: 0 0 auto; accent-color: var(--green); }
 @media (max-width: 450px) { .service-options { grid-template-columns: 1fr; } }
+.booking-notice { margin: 14px 0 22px; padding: 13px 15px; border-left: 3px solid var(--lime); background: #f2f5e7; color: var(--muted); font-size: .85rem; line-height: 1.6; }

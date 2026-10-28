@@ -4,12 +4,14 @@ import { services, site } from '../data/site';
 const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 <Layout title="Request a booking or tyre quote" description="Contact FJD Autos in Surbiton for servicing, MOTs, repairs, diagnostics or a free tyre quote.">
-  <section class="enquiry-layout wrap"><div class="enquiry-intro"><p class="eyebrow">LET’S GET YOU MOVING</p><h1>Your car.<br />What’s next<span class="accent">?</span></h1><p class="lead">Tell us a little about what you need. We’ll get in touch to arrange the details.</p><div class="note"><h3>A request, then a conversation.</h3><p>Your preferred date isn’t a confirmed appointment. We’ll confirm availability with you first.</p></div></div>
+  <section class="enquiry-layout wrap"><div class="enquiry-intro"><p class="eyebrow">LET’S GET YOU MOVING</p><h1>Your car.<br />What’s next<span class="accent">?</span></h1><p class="lead">Tell us a little about what you need. We’ll get in touch to arrange the details.</p></div>
   <form id="enquiry-form" class="enquiry-form" action="/api/enquiry" method="post">
-    <h2>Request a booking</h2><p class="form-intro">All fields are required unless marked optional.</p>
+    <h2>Request a booking</h2>
+    <p class="form-intro">All fields are required unless marked optional.</p>
     <div class="form-grid"><label>Your name<input name="name" autocomplete="name" maxlength="100" required /></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" maxlength="30" required /></label></div>
     <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
     <div class="form-grid"><label>Vehicle registration<input name="registration" class="registration" maxlength="15" required autocapitalize="characters" /></label><label>Preferred date (optional)<input name="date" type="date" /></label></div>
+    <p class="booking-notice">Your preferred date isn’t a confirmed appointment. We’ll confirm availability with you first.</p>
     <fieldset class="service-fieldset">
       <legend>What can we help with?</legend>
       <p class="field-hint">Choose all that apply.</p>
