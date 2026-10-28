@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
+import '../styles/business.css';
 import { site } from '../data/site';
+import Brand from '../components/Brand.astro';
 interface Props { title: string; description: string }
 const { title, description } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
@@ -24,10 +26,20 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefin
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="header wrap">
-      <a class="brand" href="/" aria-label={`${site.name} home`}><span class="brand-mark">FJD</span><span>AUTOS<span class="brand-caption">CARE FOR YOUR CAR</span></span></a>
-      <nav aria-label="Main navigation"><a href="/#services">Services</a><a href="/#how-it-works">How it works</a><a class="button small" href="/enquiry/">Make an enquiry <span aria-hidden="true">↗</span></a></nav>
+      <Brand />
+      <div class="header-actions">
+        <nav aria-label="Main navigation"><a href="/#services">Services</a><a href="/#how-it-works">How it works</a><a class="button small" href="/enquiry/">Make an enquiry <span aria-hidden="true">↗</span></a></nav>
+        <div class="header-contact"><a href={site.phoneHref}>Call {site.phone}</a><span>{site.openingHours.map(item => `${item.days} · ${item.hours}`).join(' / ')}</span></div>
+      </div>
     </header>
     <main id="main"><slot /></main>
-    <footer class="footer wrap"><div><a class="footer-brand" href="/">{site.name}<span class="accent">.</span></a><p>Let’s get you moving.</p></div><div><a href="/enquiry/">Request a booking ↗</a><a href="/privacy/">Privacy</a><small>© {new Date().getFullYear()} {site.name}</small></div></footer>
+    <footer class="site-footer wrap">
+      <div class="footer-main">
+        <div class="footer-identity"><Brand /><p>Your family-run garage in Surbiton.</p></div>
+        <div><h2 class="footer-heading">Find us</h2><address>134 Tolworth Broadway<br />Surbiton, Surrey<br />KT6 7HT</address><a class="footer-phone" href={site.phoneHref}>{site.phone}</a></div>
+        <div class="footer-links"><h2 class="footer-heading">Let’s get you moving</h2><a href="/enquiry/">Request a booking ↗</a><a href="/#services">Explore our services</a><a href="/#contact">Opening hours & contact</a></div>
+      </div>
+      <div class="footer-bottom"><small>© {new Date().getFullYear()} {site.name}</small><a href="/privacy/">Privacy</a></div>
+    </footer>
   </body>
 </html>

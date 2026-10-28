@@ -32,7 +32,8 @@ wrangler.jsonc             Cloudflare Worker and asset configuration
 ## Before launch
 
 - Confirm business name, actual services, address, phone, opening hours and branding.
-  The current name comes from the workspace folder; service copy is provisional.
+  Core business details now come from the supplied website screenshot; see `docs/CONTENT.md`
+  for transcribed information, offers awaiting confirmation and missing contact details.
 - Complete the privacy notice with the garage's details, processing basis, retention policy
   and rights information. Do this before enabling the form.
 - Add real location/contact details to the site and then accurate AutoRepair structured data.

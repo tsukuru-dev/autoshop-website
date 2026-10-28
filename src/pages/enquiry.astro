@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { services } from '../data/site';
+import { services, site } from '../data/site';
 const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
-<Layout title="Request a booking" description="Tell FJD Autos about your vehicle and request a servicing, repair or diagnostics appointment.">
+<Layout title="Request a booking or tyre quote" description="Contact FJD Autos in Surbiton for servicing, MOTs, repairs, diagnostics or a free tyre quote.">
   <section class="enquiry-layout wrap"><div class="enquiry-intro"><p class="eyebrow">LET’S GET YOU MOVING</p><h1>Your car.<br />What’s next<span class="accent">?</span></h1><p class="lead">Tell us a little about what you need. We’ll get in touch to arrange the details.</p><div class="note"><h3>A request, then a conversation.</h3><p>Your preferred date isn’t a confirmed appointment. We’ll confirm availability with you first.</p></div></div>
   <form id="enquiry-form" class="enquiry-form" action="/api/enquiry" method="post">
     <h2>Request a booking</h2><p class="form-intro">All fields are required unless marked optional.</p>
@@ -14,7 +14,7 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <label>Tell us a little more<textarea name="message" rows="4" maxlength="3000" required placeholder="What’s happening with your car? Include the make, model and any helpful details."></textarea></label>
     <div class="honeypot" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label></div>
     <p class="quiet">We’ll use these details to respond to your enquiry. Read our <a href="/privacy/">privacy notice</a>.</p>
-    {key ? <><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><div class="cf-turnstile" data-sitekey={key} data-action="enquiry" data-theme="light"></div></> : <p class="setup-notice">This form is being set up and isn’t accepting enquiries yet.</p>}
+    {key ? <><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><div class="cf-turnstile" data-sitekey={key} data-action="enquiry" data-theme="light"></div></> : <p class="setup-notice">Online enquiries will be available soon. Please <a href={site.phoneHref}>call {site.phone}</a> for bookings and quotes.</p>}
     <button class="button" type="submit" disabled={!key}>Send enquiry <span aria-hidden="true">↗</span></button>
     <p id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
     <noscript><p>Please enable JavaScript to complete the spam protection and send your enquiry.</p></noscript>
