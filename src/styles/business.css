@@ -35,3 +35,19 @@
 @media(max-width:650px){.header-actions{gap:12px}.header-contact a{font-size:.8rem}.header-contact span{font-size:.6rem}.header-actions .button.small{gap:12px;padding:12px}.header{padding-block:18px}}
 .art-bottom{text-decoration:none;position:relative}
 .art-bottom:hover{text-decoration:underline;text-underline-offset:5px}
+.eyebrow,
+.process .eyebrow,
+.art-top {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.eyebrow,
+.process .eyebrow {
+  color: var(--green);
+  margin-bottom: 28px;
+}
+.cta .eyebrow { color: var(--lime); }
