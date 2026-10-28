@@ -10,7 +10,22 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <div class="form-grid"><label>Your name<input name="name" autocomplete="name" maxlength="100" required /></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" maxlength="30" required /></label></div>
     <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
     <div class="form-grid"><label>Vehicle registration<input name="registration" class="registration" maxlength="15" required autocapitalize="characters" /></label><label>Preferred date (optional)<input name="date" type="date" /></label></div>
-    <label>What can we help with?<select name="service" required><option value="">Choose a service</option>{services.map(s => <option>{s.name}</option>)}<option>Something else</option></select></label>
+    <fieldset class="service-fieldset">
+      <legend>What can we help with?</legend>
+      <p class="field-hint">Choose all that apply.</p>
+      <div class="service-options">
+        {services.map(service => (
+          <label class="service-option">
+            <input type="checkbox" name="service" value={service.name} />
+            <span>{service.name}</span>
+          </label>
+        ))}
+        <label class="service-option">
+          <input type="checkbox" name="service" value="Something else" />
+          <span>Something else</span>
+        </label>
+      </div>
+    </fieldset>
     <label>Tell us a little more<textarea name="message" rows="4" maxlength="3000" required placeholder="What’s happening with your car? Include the make, model and any helpful details."></textarea></label>
     <div class="honeypot" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label></div>
     <p class="quiet">We’ll use these details to respond to your enquiry. Read our <a href="/privacy/">privacy notice</a>.</p>
@@ -23,13 +38,22 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 <script>
   const form = document.querySelector<HTMLFormElement>('#enquiry-form');
   if (form) {
-    const service = form.elements.namedItem('service') as HTMLSelectElement;
+    const serviceCheckboxes = [...form.querySelectorAll<HTMLInputElement>('input[name="service"]')];
     const selected = new URLSearchParams(location.search).get('service');
-    if (selected && [...service.options].some(option => option.value === selected)) service.value = selected;
+    const selectedCheckbox = serviceCheckboxes.find(checkbox => checkbox.value === selected);
+    if (selectedCheckbox) selectedCheckbox.checked = true;
+    const validateServices = () => {
+      const firstCheckbox = serviceCheckboxes[0];
+      firstCheckbox?.setCustomValidity(serviceCheckboxes.some(checkbox => checkbox.checked) ? '' : 'Choose at least one service.');
+    };
+    serviceCheckboxes.forEach(checkbox => checkbox.addEventListener('change', validateServices));
+    validateServices();
     const date = form.elements.namedItem('date') as HTMLInputElement;
     date.min = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(new Date());
     form.addEventListener('submit', async event => {
       event.preventDefault();
+      validateServices();
+      if (!form.reportValidity()) return;
       const button = form.querySelector<HTMLButtonElement>('button')!;
       const status = document.querySelector<HTMLElement>('#form-status')!;
       button.disabled = true;
