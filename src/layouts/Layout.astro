@@ -29,7 +29,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefin
       <Brand />
       <div class="header-actions">
         <nav aria-label="Main navigation"><a href="/#services">Services</a><a href="/#how-it-works">How it works</a><a class="button small" href="/enquiry/">Make an enquiry <span aria-hidden="true">↗</span></a></nav>
-        <div class="header-contact"><a href={site.phoneHref}>Call {site.phone}</a><span>{site.openingHours.map(item => `${item.days} · ${item.hours}`).join(' / ')}</span></div>
+        <div class="header-contact"><a href={site.phoneHref}>Call {site.phone}</a><span>{site.openingHoursSummary}</span></div>
       </div>
     </header>
     <main id="main"><slot /></main>
