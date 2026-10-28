@@ -12,7 +12,7 @@ export function validateEnquiry(form: FormData, today = new Intl.DateTimeFormat(
   const selectedServices = form.getAll('service');
   const allowedServices = [...services.map(service => service.name), 'Something else'];
   if (!selectedServices.length || selectedServices.some(service => typeof service !== 'string' || !allowedServices.includes(service)) || new Set(selectedServices).size !== selectedServices.length) throw new Error('Please choose at least one valid service.');
-  const enquiry = { name: field('name', 100), phone: field('phone', 30), email: field('email', 254), registration: field('registration', 15).toUpperCase(), services: selectedServices as string[], urgency: field('urgency', 40), date: field('date', 10, false), message: field('message', 3000) };
+  const enquiry = { name: field('name', 100), phone: field('phone', 30), email: field('email', 254), registration: field('registration', 15).toUpperCase(), services: selectedServices as string[], urgency: field('urgency', 40), date: field('date', 10, false), message: field('message', 3000, false) };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enquiry.email) || /[\r\n]/.test(enquiry.name)) throw new Error('Please enter a valid name and email address.');
   if (!/^[+\d\s().-]{7,30}$/.test(enquiry.phone) || enquiry.phone.replace(/\D/g, '').length < 7) throw new Error('Please enter a valid phone number.');
   if (!/^[A-Z0-9 -]{2,15}$/.test(enquiry.registration)) throw new Error('Please check the vehicle registration.');
