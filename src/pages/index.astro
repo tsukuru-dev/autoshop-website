@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
 import { services, site } from '../data/site';
 ---
 
@@ -23,7 +24,7 @@ import { services, site } from '../data/site';
     <div class="wrap">
       <div class="section-heading"><div><p class="eyebrow">01 / UNDER THE BONNET</p><h2>What does your car need?</h2></div><p>A little routine care.<br />Or a problem that needs a closer look.</p></div>
       <div class="service-grid">
-        {services.map((service, index) => <a class="service-card" href={`/services/${service.slug}/`}><span class="service-number">0{index + 1} <span>↗</span></span><h3>{service.name}</h3><p>{service.short}</p><span class="text-link">Find out more</span></a>)}
+        {services.map((service, index) => <a class="service-card" href={`/services/${service.slug}/`}><span class="service-card-top"><span class="service-number">0{index + 1}</span><ServiceIcon service={service.slug} /><span class="service-arrow">↗</span></span><h3>{service.name}</h3><p>{service.short}</p><span class="text-link">Find out more</span></a>)}
       </div>
     </div>
   </section>

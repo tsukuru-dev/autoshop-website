@@ -1,6 +1,18 @@
 .about-section,.contact-section{display:grid;grid-template-columns:1fr 1fr;gap:75px;padding-top:65px;padding-bottom:65px;border-bottom:1px solid #d9ddcf}
 .hero .quiet{font-size:.95rem;color:var(--green)}
 .hero .quiet a{font-weight:600;text-underline-offset:4px}
+.service-card-top{display:grid;grid-template-columns:auto 1fr auto auto;align-items:start;column-gap:12px;margin-bottom:8px}
+.service-card-top .service-number{grid-column:3;display:block;margin:0;padding-top:2px}
+.service-arrow{grid-column:4;justify-self:end;font-size:1.4rem;line-height:1}
+.service-icon{grid-column:1;grid-row:1;display:grid;place-items:start;width:120px;height:112px;margin:0;color:var(--green)}
+.service-icon svg{width:112px;height:112px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.service-icon .icon-accent{stroke:#82943f;stroke-width:2.9}
+.service-icon--repairs .icon-accent{fill:#82943f}
+.service-icon--mot svg{transform:translateX(-33px)}
+.service-icon--tyres svg,.service-icon--pickup-drop-off svg{transform:translateX(-16px)}
+.service-icon--servicing svg{transform:translateX(-1px)}
+.service-icon--repairs svg{transform:translateX(-13px)}
+.service-icon--diagnostics svg{transform:translateX(-19px)}
 .about-section p,.contact-section p{max-width:490px}
 .about-section .lead{margin-bottom:16px}
 .contact-section{margin-bottom:65px;border-top:1px solid #d9ddcf}
