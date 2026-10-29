@@ -34,6 +34,14 @@ const isHomePage = Astro.url.pathname === '/';
         <div class="header-contact"><a href={site.phoneHref}>Call {site.phone}</a><span>{site.openingHoursSummary}</span></div>
       </div>
     </header>
+    <aside class="promo-banner" aria-label="Tyre price match guarantee">
+      <div class="promo-track">
+        <span class="promo-message"><strong>Tyre Price Match Guarantee</strong><span aria-hidden="true">·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+        <span class="promo-message" aria-hidden="true"><strong>Tyre Price Match Guarantee</strong><span>·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+        <span class="promo-message" aria-hidden="true"><strong>Tyre Price Match Guarantee</strong><span>·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+        <span class="promo-message" aria-hidden="true"><strong>Tyre Price Match Guarantee</strong><span>·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+      </div>
+    </aside>
     <main id="main"><slot /></main>
     <footer class="site-footer wrap">
       <div class="footer-main">

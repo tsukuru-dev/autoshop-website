@@ -59,6 +59,12 @@
 .header-contact a{font-size:.95rem;font-weight:700;text-decoration:none;text-underline-offset:4px}
 .header-contact a:hover{text-decoration:underline}
 .header-contact span{font-size:.7rem;color:var(--muted)}
+.promo-banner{overflow:hidden;background:var(--lime);color:var(--green);border-block:1px solid #c5dc68}
+.promo-track{display:flex;width:max-content;animation:promo-scroll 50s linear infinite}
+.promo-message{display:flex;align-items:center;gap:20px;flex:none;padding:11px 24px;font-size:.8rem;letter-spacing:.02em;white-space:nowrap}
+.promo-message strong{font-weight:700;text-transform:uppercase;letter-spacing:.06em;-webkit-font-smoothing:antialiased}
+@keyframes promo-scroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.promo-track{width:100%;animation:none;justify-content:center}.promo-message[aria-hidden="true"]{display:none}.promo-message{white-space:normal;text-align:center}}
 @media(max-width:1100px){.header-actions{gap:24px}.header-actions nav{gap:18px}.header-contact{padding-left:22px}.header-contact a{font-size:.85rem}.header-contact span{font-size:.65rem}}
 @media(max-width:900px){.header{flex-wrap:wrap;padding-block:22px;gap:20px}.header-actions{justify-content:space-between;width:100%}.header-contact{text-align:right}}
 @media(max-width:650px){.header-actions{gap:14px}.header-contact{padding-left:14px}.header-contact a{font-size:.8rem}.header-contact span{font-size:.6rem}.header-actions .button.small{gap:12px;padding:12px}.header{padding-block:18px}.home-page .header,.enquiry-page .header{flex-wrap:nowrap}.home-page .header-actions,.enquiry-page .header-actions{justify-content:flex-end;width:auto;margin-left:auto}.home-page .header-actions nav,.enquiry-page .header-actions nav{display:none}.home-page .header-actions .button.small{display:none}}
