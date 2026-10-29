@@ -20,6 +20,11 @@ import { services, site } from '../data/site';
     </div>
   </section>
 
+  <section id="about" class="about-section wrap">
+    <div><p class="eyebrow">A LOCAL GARAGE. A PERSONAL APPROACH.</p><h2>Family-run.<br />Here for your car.</h2></div>
+    <div><p class="lead">FJD Autos is a long-established vehicle repair business in Surbiton, looking after all makes and models.</p><p>Our qualified, experienced technicians offer friendly service, competitive prices and diagnostic equipment to help get to the bottom of vehicle faults.</p><a class="text-link" href="/enquiry/?service=Something%20else">Ask us for advice ↗</a></div>
+  </section>
+
   <section id="services" class="services-section">
     <div class="wrap">
       <div class="section-heading"><div><p class="eyebrow">01 / UNDER THE BONNET</p><h2>What does your car need?</h2></div><p>A little routine care.<br />Or a problem that needs a closer look.</p></div>
@@ -27,11 +32,6 @@ import { services, site } from '../data/site';
         {services.map((service, index) => <a class="service-card" href={`/services/${service.slug}/`}><span class="service-card-top"><span class="service-number">0{index + 1}</span><ServiceIcon service={service.slug} /><span class="service-arrow">↗</span></span><h3>{service.name}</h3><p>{service.short}</p><span class="text-link">Find out more</span></a>)}
       </div>
     </div>
-  </section>
-
-  <section id="about" class="about-section wrap">
-    <div><p class="eyebrow">A LOCAL GARAGE. A PERSONAL APPROACH.</p><h2>Family-run.<br />Here for your car.</h2></div>
-    <div><p class="lead">FJD Autos is a long-established vehicle repair business in Surbiton, looking after all makes and models.</p><p>Our qualified, experienced technicians offer friendly service, competitive prices and diagnostic equipment to help get to the bottom of vehicle faults.</p><a class="text-link" href="/enquiry/?service=Something%20else">Ask us for advice ↗</a></div>
   </section>
 
   <section id="how-it-works" class="process wrap">
