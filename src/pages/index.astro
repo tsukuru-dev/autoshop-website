@@ -27,7 +27,7 @@ import { services, site } from '../data/site';
 
   <section id="services" class="services-section">
     <div class="wrap">
-      <div class="section-heading"><div><p class="eyebrow">01 / UNDER THE BONNET</p><h2>What does your car need?</h2></div><p>A little routine care.<br />Or a problem that needs a closer look.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">01 / UNDER THE BONNET</p><h2>What does your car need?</h2><p class="section-subline">A little routine care or a problem that needs a closer look.</p></div></div>
       <div class="service-grid">
         {services.map((service, index) => <a class="service-card" href={`/services/${service.slug}/`}><span class="service-card-top"><span class="service-number">0{index + 1}</span><ServiceIcon service={service.slug} /><span class="service-arrow">↗</span></span><h3>{service.name}</h3><p>{service.short}</p><span class="text-link">Find out more</span></a>)}
       </div>
@@ -35,9 +35,9 @@ import { services, site } from '../data/site';
   </section>
 
   <section id="how-it-works" class="process wrap">
-    <div><p class="eyebrow">02 / LET’S KEEP IT SIMPLE</p><h2>Less back and forth.<br />More getting on with it.</h2><a class="text-link" href="/enquiry/">Start your enquiry ↗</a></div>
+    <div><p class="eyebrow">02 / LET’S KEEP IT SIMPLE</p><h2>Less back and forth.<br />More getting on with it.</h2><div class="process-call"><a class="button small" href={site.phoneHref}>Call us on {site.phone}</a><span>OR</span></div></div>
     <ol>
-      <li><span>01</span><div><h3>Tell us about your car</h3><p>Share your registration, what you need and a date that suits you.</p></div></li>
+      <li class="process-link-step"><a class="process-step-link" href="/enquiry/"><span class="process-step-number">01</span><div><h3>Tell us about your car <span class="process-step-arrow" aria-hidden="true">→</span></h3><p>Share your registration, what you need and a date that suits you.</p></div></a></li>
       <li><span>02</span><div><h3>We’ll get in touch</h3><p>We’ll discuss the work and availability before confirming a booking.</p></div></li>
       <li><span>03</span><div><h3>Bring it in, or we can pick it up</h3><p>Drop your vehicle off at the agreed time, or ask us to arrange collection when we confirm your booking.</p></div></li>
     </ol>
@@ -46,7 +46,7 @@ import { services, site } from '../data/site';
   <section id="contact" class="contact-section wrap">
     <div>
       <p class="eyebrow">03 / GET IN TOUCH</p>
-      <div class="contact-heading"><h2>Let’s talk cars.</h2><a class="button small contact-call" href={site.phoneHref}>Call {site.phone}</a></div>
+      <div class="contact-heading"><h2>Let’s talk cars.</h2><a class="button small contact-call" href={site.phoneHref}>{site.phone}</a></div>
       <address class="contact-address">134 Tolworth Broadway<br />Surbiton, Surrey<br />KT6 7HT</address>
       <a class="garage-map" data-map-link href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(site.address)}`} target="_blank" rel="noopener noreferrer" aria-label="Get directions to FJD Autos">
         <img src="/images/fjd-location-map.png" alt="Map showing FJD Autos beside Tolworth Broadway and the A3" width="1280" height="600" loading="lazy" />
@@ -57,8 +57,6 @@ import { services, site } from '../data/site';
     </div>
     <div class="contact-opening"><h3>Opening hours</h3><dl class="opening-hours">{site.openingHours.map(item => <div class:list={{ 'day-closed': item.hours === 'Closed' }}><dt>{item.days}</dt><dd>{item.hours}</dd></div>)}</dl></div>
   </section>
-
-  <section class="area-section wrap"><h2>Local drivers. Local fleets.</h2><p>Car repairs, tyres and MOT for vehicle owners and fleets across {site.areasServed.join(', ')}.</p></section>
 
   <section class="cta wrap">
     <div class="cta-copy"><p class="eyebrow">LET’S GET STARTED</p><h2>A little attention.<br />A lot more peace of mind.</h2></div>

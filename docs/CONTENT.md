@@ -6,7 +6,7 @@ Included in the new design:
 
 - FJD Autos; family-run, long-established garage in Surbiton.
 - Telephone: 020 8390 2542.
-- Monday–Friday 7am–5.30pm. The user confirmed Saturday is closed, superseding the old screenshot.
+- Monday–Friday 8am–5.30pm. The user confirmed Saturday is closed, superseding the old screenshot.
 - All makes and models; servicing, repairs, MOT testing, tyres and diagnostics.
 - Friendly service, competitive prices, qualified and experienced technicians.
 - Free, no-obligation tyre quotes.

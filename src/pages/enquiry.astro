@@ -43,7 +43,7 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       <legend class="field-label">How soon do you need the work done?</legend>
       <div class="urgency-options">
         <label class="urgency-option"><input type="radio" name="urgency" value="As soon as possible" required /><span>As soon as possible <small class="option-aside">(like yesterday - super urgent)</small></span></label>
-        <label class="urgency-option"><input type="radio" name="urgency" value="Within the next few days" /><span>Within the next few days <small class="option-aside">(urgently, pretty please)</small></span></label>
+        <label class="urgency-option"><input type="radio" name="urgency" value="Within the next few days" /><span>Within the next few days <small class="option-aside">(urgently)</small></span></label>
         <label class="urgency-option"><input type="radio" name="urgency" value="Within a week" /><span>Within a week</span></label>
         <label class="urgency-option"><input type="radio" name="urgency" value="I’m flexible" /><span>I’m flexible</span></label>
         <label class="urgency-option"><input type="radio" name="urgency" value="I have a specific date" /><span>I have a specific date</span></label>
@@ -68,6 +68,7 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   const form = document.querySelector<HTMLFormElement>('#enquiry-form');
   if (form) {
     const serviceCheckboxes = [...form.querySelectorAll<HTMLInputElement>('input[name="service"]')];
+    const serviceOptions = form.querySelector<HTMLElement>('.service-options')!;
     const selected = new URLSearchParams(location.search).get('service');
     const selectedCheckbox = serviceCheckboxes.find(checkbox => checkbox.value === selected);
     if (selectedCheckbox) selectedCheckbox.checked = true;
@@ -80,6 +81,7 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     const date = form.elements.namedItem('date') as HTMLInputElement;
     date.min = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(new Date());
     const urgencyRadios = [...form.querySelectorAll<HTMLInputElement>('input[name="urgency"]')];
+    const urgencyOptions = form.querySelector<HTMLElement>('.urgency-options')!;
     const specificDateField = document.querySelector<HTMLElement>('#specific-date-field')!;
     const specificDateNotice = document.querySelector<HTMLElement>('#specific-date-notice')!;
     const updateDateField = () => {
@@ -119,8 +121,8 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       if (!/^[+\d\s().-]{7,30}$/.test(phone.value.trim()) || phone.value.replace(/\D/g, '').length < 7) addError(phone, phone.closest('.form-field')!, 'Enter a valid phone number.');
       if (!email.validity.valid || !email.value.trim()) addError(email, email.closest('.form-field')!, 'Enter a valid email address.');
       if (!/^[A-Za-z0-9 -]{2,15}$/.test(registration.value.trim())) addError(registration, registration.closest('.form-field')!, 'Enter a valid vehicle registration.');
-      if (!serviceCheckboxes.some(checkbox => checkbox.checked)) addError(serviceCheckboxes[0], serviceCheckboxes[0].closest('.service-fieldset')!, 'Choose at least one service.');
-      if (!chosenUrgency) addError(urgencyRadios[0], urgencyRadios[0].closest('.urgency-fieldset')!, 'Choose how soon you need the work done.');
+      if (!serviceCheckboxes.some(checkbox => checkbox.checked)) addError(serviceOptions, serviceCheckboxes[0].closest('.service-fieldset')!, 'Choose at least one service.');
+      if (!chosenUrgency) addError(urgencyOptions, urgencyRadios[0].closest('.urgency-fieldset')!, 'Choose how soon you need the work done.');
       if (chosenUrgency?.value === 'I have a specific date' && (!date.value || !date.validity.valid)) addError(date, specificDateField, 'Choose a valid preferred date.');
       return errorList.children.length === 0;
     };
