@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fjd-autos-website",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-28",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "send_email": [{ "name": "ENQUIRY_EMAIL" }]
+}

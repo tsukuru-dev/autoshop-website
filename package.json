@@ -1,0 +1,26 @@
+{
+  "name": "fjd-autos-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "dev:cloudflare": "npm run build && wrangler dev",
+    "check": "astro check && tsc -p tsconfig.worker.json",
+    "test": "tsx --test tests/*.test.ts",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "astro": "^7.4.3",
+    "mimetext": "^3.0.28"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@cloudflare/workers-types": "^5.20261028.1",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.154.0"
+  }
+}

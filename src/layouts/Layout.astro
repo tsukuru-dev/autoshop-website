@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+import '../styles/business.css';
+import { site } from '../data/site';
+import Brand from '../components/Brand.astro';
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const isEnquiryPage = Astro.url.pathname === '/enquiry/' || Astro.url.pathname === '/enquiry';
+const isHomePage = Astro.url.pathname === '/';
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {site.name}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#183b32" />
+    {!Astro.site && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={`${title} | ${site.name}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class:list={{ 'home-page': isHomePage, 'enquiry-page': isEnquiryPage }}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header wrap">
+      <Brand />
+      <div class="header-actions">
+        <nav aria-label="Main navigation">{isEnquiryPage ? <><a href="/">Home</a><a href="/#services">Services</a></> : <a href="/#services">Services</a>}{!isEnquiryPage && <a class="button small" href="/enquiry/">Make an enquiry <span aria-hidden="true">↗</span></a>}</nav>
+        <div class="header-contact"><a href={site.phoneHref}>Call {site.phone}</a><span>{site.openingHoursSummary}</span></div>
+      </div>
+    </header>
+    {!isEnquiryPage && <aside class="promo-banner" aria-label="Tyre price match guarantee">
+      <div class="promo-track">
+        <span class="promo-message"><strong>Tyre Price Match Guarantee</strong><span aria-hidden="true">·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+        <span class="promo-message" aria-hidden="true"><strong>Tyre Price Match Guarantee</strong><span>·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+        <span class="promo-message" aria-hidden="true"><strong>Tyre Price Match Guarantee</strong><span>·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+        <span class="promo-message" aria-hidden="true"><strong>Tyre Price Match Guarantee</strong><span>·</span> We’ll match or beat the price of any online or high street tyre fitter!</span>
+      </div>
+    </aside>}
+    <main id="main"><slot /></main>
+    <footer class="site-footer wrap">
+      <div class="footer-main">
+        <div class="footer-identity"><Brand /><p>Your family-run garage in Surbiton.</p></div>
+        <div><h2 class="footer-heading">Find us</h2><address>134 Tolworth Broadway<br />Surbiton, Surrey<br />KT6 7HT</address><a class="footer-phone" href={site.phoneHref}>{site.phone}</a></div>
+        <div class="footer-links"><h2 class="footer-heading">Let’s get you moving</h2><a href="/enquiry/">Request a booking ↗</a><a href="/#services">Explore our services</a><a href="/#contact">Opening hours & contact</a></div>
+      </div>
+      <div class="footer-bottom"><small>© {new Date().getFullYear()} {site.name}</small><a href="/privacy/">Privacy</a></div>
+    </footer>
+  </body>
+</html>
