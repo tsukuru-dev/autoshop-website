@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { services } from '../data/site';
-const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+// Showcase-only deployment. Former live integration:
+// const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 <Layout title="Request a booking or tyre quote" description="Contact FJD Autos in Surbiton for servicing, MOT, repairs, diagnostics or a free tyre quote.">
   <section class="enquiry-layout wrap"><div class="enquiry-intro"><p class="eyebrow">LET’S GET YOU MOVING</p><h1>Your car.<br />What’s next<span class="accent">?</span></h1><p class="lead">Tell us a little about what you need. We’ll get in touch to arrange the details.</p></div>
-  <form id="enquiry-form" class="enquiry-form" action="/api/enquiry" method="post" novalidate>
+  <!-- Showcase-only form. Former live attributes: action="/api/enquiry" method="post" novalidate -->
+  <form id="enquiry-form" class="enquiry-form">
     <h2>Request a booking</h2>
     <p class="form-intro">All fields are required unless marked optional.</p>
     <section class="form-section" aria-labelledby="details-section-title">
@@ -53,15 +55,18 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <label id="specific-date-field" class="form-field" hidden><span class="field-label">Preferred date</span><input name="date" type="date" /></label>
     </section>
     <div class="honeypot" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label></div>
-    {key && <><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><div class="cf-turnstile" data-sitekey={key} data-action="enquiry" data-theme="light"></div></>}
+    {/* Former live Turnstile integration:
+      {key && <><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><div class="cf-turnstile" data-sitekey={key} data-action="enquiry" data-theme="light"></div></>}
+    */}
     <p class="form-privacy">We use your details to respond to your enquiry. Read our <a href="/privacy/">privacy notice</a>.</p>
     <div id="form-errors" class="form-errors" role="alert" tabindex="-1" hidden>
       <strong>Please fix the following:</strong>
       <ul></ul>
     </div>
-    <button class="button" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+    <button class="button showcase-submit" type="submit" disabled aria-describedby="showcase-form-note">Send enquiry <span aria-hidden="true">↗</span></button>
+    <p id="showcase-form-note" class="showcase-form-note">Showcase form only — submissions are disabled.</p>
     <p id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
-    <noscript><p>Please enable JavaScript to complete the spam protection and send your enquiry.</p></noscript>
+    <!-- Former live-form fallback: <noscript><p>Please enable JavaScript to complete the spam protection and send your enquiry.</p></noscript> -->
   </form></section>
 </Layout>
 <script>
@@ -139,6 +144,8 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     form.addEventListener('input', () => {
       if (validationAttempted) refreshErrors();
     });
+    /* Showcase-only deployment: retain the original submission behaviour for
+       reference, but do not attach it or send requests from this portfolio mock-up.
     form.addEventListener('submit', async event => {
       event.preventDefault();
       validationAttempted = true;
@@ -173,5 +180,21 @@ const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         status.focus();
       }
     });
+    */
   }
 </script>
+
+<style>
+  .showcase-submit:disabled {
+    filter: grayscale(1);
+    opacity: 0.48;
+  }
+
+  .showcase-form-note {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+</style>

@@ -1,12 +1,24 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "fjd-autos-website",
-  "main": "worker/index.ts",
   "compatibility_date": "2026-10-28",
   "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "run_worker_first": ["/api/*"]
+    "directory": "./dist"
   },
-  "send_email": [{ "name": "ENQUIRY_EMAIL" }]
+  "routes": [
+    {
+      "pattern": "fjdsamplesite.madhatterstudio.co.uk",
+      "custom_domain": true
+    }
+  ]
+
+  // Showcase-only deployment: retain the former enquiry Worker configuration
+  // for reference, but do not deploy or expose it.
+  // "main": "worker/index.ts",
+  // "assets": {
+  //   "directory": "./dist",
+  //   "binding": "ASSETS",
+  //   "run_worker_first": ["/api/*"]
+  // },
+  // "send_email": [{ "name": "ENQUIRY_EMAIL" }]
 }
